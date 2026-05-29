@@ -12,13 +12,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Nama, WhatsApp, Discord, dan Alasan Masuk wajib diisi' }, { status: 400 })
     }
 
-    // Cek duplikat via WhatsApp atau Discord
     const existing = getApplications().find(a =>
       (a as any).whatsapp === whatsapp || (a as any).discord === discord
     )
     if (existing) return NextResponse.json({ error: 'Kamu sudah pernah mendaftar!' }, { status: 409 })
 
-    const { userId } = await auth().catch(() => ({ userId: null }))
+    let userId: string | null = null
+    try {
+      const authResult = await auth()
+      userId = authResult.userId
+    } catch {
+      userId = null
+    }
 
     const app = {
       id: randomUUID(),
@@ -37,7 +42,6 @@ export async function POST(req: NextRequest) {
       reviewedAt: '',
       createdAt: new Date().toISOString(),
       userId: userId ?? '',
-      // legacy
       firstName: nama?.split(' ')[0] ?? '',
       lastName: nama?.split(' ').slice(1).join(' ') ?? '',
       email: '', phone: whatsapp, birthDate: '',
