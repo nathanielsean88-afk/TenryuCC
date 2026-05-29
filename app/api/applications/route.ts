@@ -18,7 +18,13 @@ export async function POST(req: NextRequest) {
     )
     if (existing) return NextResponse.json({ error: 'Kamu sudah pernah mendaftar!' }, { status: 409 })
 
-    const { userId } = await auth().catch(() => ({ userId: null }))
+    let userId: string | null = null
+    try {
+      const authResult = await auth()
+      userId = authResult.userId
+    } catch {
+      userId = null
+    }
 
     const app = {
       id: randomUUID(),
