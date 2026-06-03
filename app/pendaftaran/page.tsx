@@ -59,6 +59,7 @@ export default function PendaftaranPage() {
     borderRadius: 2, padding: '14px 18px',
     color: 'var(--snow)', fontFamily: "'EB Garamond', serif",
     fontSize: 16, outline: 'none', width: '100%', transition: 'all 0.3s',
+    boxSizing: 'border-box',
   }
   const labelStyle: React.CSSProperties = {
     fontFamily: "'Cinzel', serif", fontSize: 10,
@@ -71,21 +72,21 @@ export default function PendaftaranPage() {
       <>
         <div className="noise-overlay" />
         <Navbar />
-        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--obsidian)', position: 'relative', overflow: 'hidden', paddingTop: 80 }}>
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--obsidian)', position: 'relative', overflow: 'hidden', padding: '100px 20px 40px' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(139,26,26,0.2) 0%, transparent 70%)' }} />
-          <div style={{ position: 'relative', zIndex: 2, maxWidth: 560, textAlign: 'center', padding: 60, border: '1px solid rgba(201,169,110,0.2)', background: 'rgba(24,24,24,0.8)', backdropFilter: 'blur(12px)', borderRadius: 3 }}>
+          <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 560, textAlign: 'center', padding: '40px 24px', border: '1px solid rgba(201,169,110,0.2)', background: 'rgba(24,24,24,0.8)', backdropFilter: 'blur(12px)', borderRadius: 3 }}>
             <div style={{ width: 80, height: 80, border: '1.5px solid var(--gold)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 28px', overflow: 'hidden', background: 'radial-gradient(circle, rgba(139,26,26,0.3) 0%, transparent 70%)' }}>
               <Image src="/logo.png" alt="Tenryu" width={64} height={64} style={{ objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(201,169,110,0.5))' }} />
             </div>
             <div style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 16 }}>Tenryu Circle</div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 44, fontWeight: 300, color: 'var(--snow)', marginBottom: 16 }}>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(32px, 8vw, 44px)', fontWeight: 300, color: 'var(--snow)', marginBottom: 16 }}>
               Permohonan <em style={{ fontStyle: 'italic', color: 'var(--crimson-light)' }}>Terkirim</em>
             </h2>
             <p style={{ fontSize: 17, color: 'var(--mist)', lineHeight: 1.8, fontStyle: 'italic', marginBottom: 16 }}>
               Terima kasih <strong style={{ color: 'var(--snow)', fontStyle: 'normal' }}>{form.nama}</strong>! Permohonanmu sudah kami terima.
             </p>
             <p style={{ fontSize: 15, color: 'var(--mist)', lineHeight: 1.8, fontStyle: 'italic', marginBottom: 40 }}>
-              Tim kami akan menghubungi kamu via <strong style={{ color: 'var(--gold)', fontStyle: 'normal' }}>WhatsApp</strong> atau <strong style={{ color: 'var(--gold)', fontStyle: 'normal' }}>Discord</strong> dalam 3–5 hari kerja. Jika diterima, kamu akan mendapat link untuk membuat akun.
+              Tim kami akan menghubungi kamu via <strong style={{ color: 'var(--gold)', fontStyle: 'normal' }}>WhatsApp</strong> atau <strong style={{ color: 'var(--gold)', fontStyle: 'normal' }}>Discord</strong> dalam 3–5 hari kerja.
             </p>
             <button className="btn-primary" onClick={() => router.push('/')}>Kembali ke Beranda</button>
           </div>
@@ -96,10 +97,24 @@ export default function PendaftaranPage() {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 640px) {
+          .pendaftaran-header { padding: 60px 20px 40px !important; }
+          .pendaftaran-body { padding: 0 16px 60px !important; }
+          .step-grid-2 { grid-template-columns: 1fr !important; }
+          .step-line { width: 32px !important; }
+          .step-label { font-size: 8px !important; letter-spacing: 0.1em !important; }
+          .konfirmasi-row { flex-direction: column !important; gap: 4px !important; align-items: flex-start !important; }
+          .konfirmasi-val { font-size: 15px !important; }
+          .nav-buttons { flex-direction: column-reverse !important; }
+          .nav-buttons button { width: 100% !important; }
+        }
+      `}</style>
       <div className="noise-overlay" />
       <Navbar />
       <div style={{ paddingTop: 80 }}>
-        <div style={{ position: 'relative', padding: '80px 60px 60px', textAlign: 'center', overflow: 'hidden' }}>
+        {/* Header */}
+        <div className="pendaftaran-header" style={{ position: 'relative', padding: '80px 60px 60px', textAlign: 'center', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 100% at 50% 0%, rgba(139,26,26,0.15) 0%, transparent 70%)' }} />
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24, position: 'relative' }}>
             <div style={{ width: 72, height: 72, borderRadius: '50%', border: '1px solid rgba(201,169,110,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: 'radial-gradient(circle, rgba(139,26,26,0.2) 0%, transparent 70%)', boxShadow: '0 0 30px rgba(139,26,26,0.2)' }}>
@@ -111,43 +126,43 @@ export default function PendaftaranPage() {
             Membership
             <span style={{ display: 'block', width: 30, height: 1, background: 'var(--gold)', opacity: 0.5 }} />
           </div>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 300, color: 'var(--snow)', position: 'relative' }}>
+          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(32px, 8vw, 64px)', fontWeight: 300, color: 'var(--snow)', position: 'relative' }}>
             Formulir <em style={{ fontStyle: 'italic', color: 'var(--crimson-light)' }}>Pendaftaran</em>
           </h1>
-          <p style={{ fontSize: 17, color: 'var(--mist)', marginTop: 16, fontStyle: 'italic', position: 'relative' }}>
+          <p style={{ fontSize: 16, color: 'var(--mist)', marginTop: 12, fontStyle: 'italic', position: 'relative' }}>
             Tidak perlu akun — isi form, tunggu konfirmasi via WhatsApp/Discord
           </p>
 
           {/* Steps */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, marginTop: 40, position: 'relative' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 40, position: 'relative' }}>
             {['Identitas', 'Circle & Alasan', 'Konfirmasi'].map((label, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <div style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${i + 1 <= step ? 'var(--crimson)' : 'rgba(255,255,255,0.1)'}`, background: i + 1 < step ? 'var(--crimson)' : i + 1 === step ? 'rgba(139,26,26,0.2)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cinzel', serif", fontSize: 12, color: i + 1 <= step ? 'var(--snow)' : 'var(--smoke)', transition: 'all 0.3s' }}>
                     {i + 1 < step ? '✓' : i + 1}
                   </div>
-                  <span style={{ fontFamily: "'Cinzel', serif", fontSize: 9, letterSpacing: '0.15em', color: i + 1 <= step ? 'var(--gold)' : 'var(--smoke)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{label}</span>
+                  <span className="step-label" style={{ fontFamily: "'Cinzel', serif", fontSize: 9, letterSpacing: '0.12em', color: i + 1 <= step ? 'var(--gold)' : 'var(--smoke)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{label}</span>
                 </div>
-                {i < 2 && <div style={{ width: 60, height: 1, background: i + 1 < step ? 'var(--crimson)' : 'rgba(255,255,255,0.1)', marginBottom: 24, transition: 'background 0.3s' }} />}
+                {i < 2 && <div className="step-line" style={{ width: 40, height: 1, background: i + 1 < step ? 'var(--crimson)' : 'rgba(255,255,255,0.1)', marginBottom: 24, transition: 'background 0.3s' }} />}
               </div>
             ))}
           </div>
         </div>
 
-        <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 40px 80px' }}>
+        {/* Form Body */}
+        <div className="pendaftaran-body" style={{ maxWidth: 720, margin: '0 auto', padding: '0 24px 80px' }}>
 
-          {/* Step 1: Identitas */}
+          {/* Step 1 */}
           {step === 1 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 12 }}>
-                Identitas Diri
-                <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
+                Identitas Diri <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <label style={labelStyle}>Nama Lengkap *</label>
                 <input style={inputStyle} value={form.nama} onChange={e => set('nama', e.target.value)} placeholder="Nama lengkap kamu" />
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+              <div className="step-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <label style={labelStyle}>Umur *</label>
                   <input style={inputStyle} type="number" min="13" max="99" value={form.umur} onChange={e => set('umur', e.target.value)} placeholder="Umur kamu" />
@@ -158,8 +173,7 @@ export default function PendaftaranPage() {
                 </div>
               </div>
               <div style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 12, marginTop: 8 }}>
-                Kontak
-                <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
+                Kontak <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <label style={labelStyle}>Nomor WhatsApp *</label>
@@ -182,12 +196,11 @@ export default function PendaftaranPage() {
             </div>
           )}
 
-          {/* Step 2: Circle & Alasan */}
+          {/* Step 2 */}
           {step === 2 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 12 }}>
-                Riwayat Circle
-                <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
+                Riwayat Circle <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <label style={labelStyle}>CC Sebelumnya</label>
@@ -198,8 +211,7 @@ export default function PendaftaranPage() {
                 <textarea style={{ ...inputStyle, minHeight: 100, resize: 'vertical' }} value={form.alasanKeluar} onChange={e => set('alasanKeluar', e.target.value)} placeholder="Ceritakan alasanmu (isi '-' jika tidak ada CC sebelumnya)" />
               </div>
               <div style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 12, marginTop: 8 }}>
-                Motivasi
-                <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
+                Motivasi <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <label style={labelStyle}>Alasan Masuk Tenryu Circle *</label>
@@ -208,12 +220,11 @@ export default function PendaftaranPage() {
             </div>
           )}
 
-          {/* Step 3: Konfirmasi */}
+          {/* Step 3 */}
           {step === 3 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
               <div style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-                Konfirmasi Data
-                <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
+                Konfirmasi Data <span style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.2)' }} />
               </div>
               {[
                 { label: 'Nama', value: form.nama },
@@ -224,20 +235,19 @@ export default function PendaftaranPage() {
                 { label: 'TikTok', value: form.tiktok ? `@${form.tiktok}` : '-' },
                 { label: 'CC Sebelumnya', value: form.ccSebelumnya || '-' },
               ].map(item => (
-                <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                  <span style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.2em', color: 'var(--mist)', textTransform: 'uppercase' }}>{item.label}</span>
-                  <span style={{ fontSize: 16, color: 'var(--pearl)', fontFamily: "'EB Garamond', serif" }}>{item.value || '—'}</span>
+                <div className="konfirmasi-row" key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '14px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <span style={{ fontFamily: "'Cinzel', serif", fontSize: 10, letterSpacing: '0.2em', color: 'var(--mist)', textTransform: 'uppercase', flexShrink: 0 }}>{item.label}</span>
+                  <span className="konfirmasi-val" style={{ fontSize: 16, color: 'var(--pearl)', fontFamily: "'EB Garamond', serif", textAlign: 'right', wordBreak: 'break-word' }}>{item.value || '—'}</span>
                 </div>
               ))}
               <div style={{ marginTop: 20, padding: 20, border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)', borderRadius: 2 }}>
                 <div style={{ fontFamily: "'Cinzel', serif", fontSize: 9, letterSpacing: '0.3em', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 8 }}>Alasan Masuk</div>
                 <p style={{ fontSize: 15, color: 'var(--pearl)', fontStyle: 'italic', lineHeight: 1.7 }}>{form.alasanMasuk || '—'}</p>
               </div>
-              {/* Info box */}
               <div style={{ marginTop: 24, padding: '16px 20px', border: '1px solid rgba(201,169,110,0.2)', background: 'rgba(201,169,110,0.04)', borderRadius: 2 }}>
                 <div style={{ fontFamily: "'Cinzel', serif", fontSize: 9, letterSpacing: '0.2em', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 8 }}>Selanjutnya</div>
                 <p style={{ fontSize: 14, color: 'var(--mist)', fontStyle: 'italic', lineHeight: 1.7 }}>
-                  Setelah submit, tim kami akan menghubungi kamu via <strong style={{ color: 'var(--snow)', fontStyle: 'normal' }}>WhatsApp</strong> atau <strong style={{ color: 'var(--snow)', fontStyle: 'normal' }}>Discord</strong>. Jika diterima, kamu akan mendapat link untuk membuat akun Tenryu Circle.
+                  Setelah submit, tim kami akan menghubungi kamu via <strong style={{ color: 'var(--snow)', fontStyle: 'normal' }}>WhatsApp</strong> atau <strong style={{ color: 'var(--snow)', fontStyle: 'normal' }}>Discord</strong>.
                 </p>
               </div>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginTop: 20 }}>
@@ -250,11 +260,13 @@ export default function PendaftaranPage() {
           )}
 
           {/* Navigation */}
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginTop: 48 }}>
-            {step > 1 && <button className="btn-outline" onClick={() => setStep(s => (s - 1) as Step)}>← Kembali</button>}
+          <div className="nav-buttons" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 48 }}>
+            {step > 1 && (
+              <button className="btn-outline" onClick={() => setStep(s => (s - 1) as Step)}>← Kembali</button>
+            )}
             {step < 3
               ? <button className="btn-primary" onClick={() => setStep(s => (s + 1) as Step)}>Lanjutkan →</button>
-              : <button className="btn-primary" onClick={handleSubmit} disabled={loading} style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer', minWidth: 240 }}>
+              : <button className="btn-primary" onClick={handleSubmit} disabled={loading} style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer', minWidth: 200 }}>
                   {loading ? 'Mengirim...' : 'Kirim Permohonan'}
                 </button>
             }
@@ -266,4 +278,5 @@ export default function PendaftaranPage() {
       </div>
     </>
   )
-}
+                                                                                                           }
+                                                                                     
