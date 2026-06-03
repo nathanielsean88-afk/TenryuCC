@@ -9,8 +9,25 @@ export default function LoginPage() {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
     }}>
+      <style>{`
+        body { background: var(--obsidian); }
+
+        @media (max-width: 768px) {
+          .login-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .login-visual-side {
+            display: none !important;
+          }
+          .login-form-side {
+            padding: 48px 24px !important;
+            min-height: 100vh;
+          }
+        }
+      `}</style>
+
       {/* Visual Side */}
-      <div style={{
+      <div className="login-visual-side" style={{
         position: 'relative',
         background: 'linear-gradient(135deg, #0f0505 0%, #1a0808 100%)',
         display: 'flex',
@@ -50,9 +67,7 @@ export default function LoginPage() {
             width: 80, height: 80,
             border: '1.5px solid var(--gold)',
             borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
             margin: '0 auto 30px',
             background: 'radial-gradient(circle, rgba(139,26,26,0.4) 0%, transparent 70%)',
             overflow: 'hidden',
@@ -80,7 +95,7 @@ export default function LoginPage() {
       </div>
 
       {/* Clerk SignIn Side */}
-      <div style={{
+      <div className="login-form-side" style={{
         background: 'var(--dark)',
         display: 'flex',
         alignItems: 'center',
@@ -88,6 +103,25 @@ export default function LoginPage() {
         padding: '60px 70px',
       }}>
         <div style={{ width: '100%', maxWidth: 420 }}>
+
+          {/* Logo mobile only */}
+          <div style={{ textAlign: 'center', marginBottom: 32, display: 'none' }} className="login-mobile-logo">
+            <div style={{
+              width: 64, height: 64,
+              border: '1.5px solid var(--gold)',
+              borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 16px',
+              background: 'radial-gradient(circle, rgba(139,26,26,0.4) 0%, transparent 70%)',
+              overflow: 'hidden',
+            }}>
+              <Image src="/logo.png" alt="Tenryu Circle" width={52} height={52} style={{ objectFit: 'contain' }} />
+            </div>
+            <div style={{ fontFamily: "'Cinzel', serif", fontSize: 9, letterSpacing: '0.4em', color: 'var(--gold)', textTransform: 'uppercase' }}>
+              Tenryu Circle
+            </div>
+          </div>
+
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 36, fontWeight: 300, color: 'var(--snow)', marginBottom: 8 }}>
             Masuk
           </h2>
@@ -156,8 +190,13 @@ export default function LoginPage() {
       </div>
 
       <style>{`
-        body { background: var(--obsidian); }
+        @media (max-width: 768px) {
+          .login-mobile-logo {
+            display: block !important;
+          }
+        }
       `}</style>
     </div>
   )
 }
+
