@@ -20,8 +20,10 @@ export default function LoginPage() {
             display: none !important;
           }
           .login-form-side {
-            padding: 48px 24px !important;
+            padding: 48px 24px 80px !important;
             min-height: 100vh;
+            align-items: flex-start !important;
+            padding-top: 60px !important;
           }
         }
       `}</style>
@@ -104,8 +106,8 @@ export default function LoginPage() {
       }}>
         <div style={{ width: '100%', maxWidth: 420 }}>
 
-          {/* Logo mobile only */}
-          <div style={{ textAlign: 'center', marginBottom: 32, display: 'none' }} className="login-mobile-logo">
+          {/* Logo — mobile only */}
+          <div style={{ textAlign: 'center', marginBottom: 32 }} className="login-mobile-logo">
             <div style={{
               width: 64, height: 64,
               border: '1.5px solid var(--gold)',
@@ -181,6 +183,17 @@ export default function LoginPage() {
                   padding: '14px',
                 },
                 footerActionLink: { color: 'var(--crimson-light)' },
+                footer: {
+                  background: 'transparent',
+                },
+                footerPages: {
+                  background: 'transparent',
+                },
+                footerAction: {
+                  background: 'rgba(255,255,255,0.03)',
+                  borderTop: '1px solid rgba(255,255,255,0.06)',
+                },
+                footerActionText: { color: 'var(--mist)' },
                 identityPreviewText: { color: 'var(--pearl)' },
                 identityPreviewEditButton: { color: 'var(--gold)' },
               },
@@ -190,13 +203,13 @@ export default function LoginPage() {
       </div>
 
       <style>{`
+        /* Desktop: sembunyikan logo mobile */
+        .login-mobile-logo { display: none; }
+
         @media (max-width: 768px) {
-          .login-mobile-logo {
-            display: block !important;
-          }
+          .login-mobile-logo { display: block !important; }
         }
       `}</style>
     </div>
   )
 }
-
